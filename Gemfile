@@ -15,6 +15,7 @@ gem 'pg'
 gem 'rolify'
 gem 'simple_form'
 gem 'unicorn'
+gem 'unirest'
 group :development do
   gem 'powder'
   gem 'pry-rails'
