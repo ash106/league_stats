@@ -1,0 +1,20 @@
+<%= simple_form_for(@summoner) do |f| %>
+  <%= f.error_notification %>
+
+  <div class="form-inputs">
+    <%= f.input :name %>
+    <%= f.input :level %>
+    <%= f.input :icon %>
+    <%= f.input :server %>
+    <%= f.input :honor_friendly %>
+    <%= f.input :honor_helpful %>
+    <%= f.input :honor_teamwork %>
+    <%= f.input :honor_opponent %>
+    <%= f.input :lifetime_ip %>
+    <%= f.input :last_season %>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit %>
+  </div>
+<% end %>

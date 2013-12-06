@@ -1,0 +1,54 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @summoner.name %>
+</p>
+
+<p>
+  <strong>Level:</strong>
+  <%= @summoner.level %>
+</p>
+
+<p>
+  <strong>Icon:</strong>
+  <%= @summoner.icon %>
+</p>
+
+<p>
+  <strong>Server:</strong>
+  <%= @summoner.server %>
+</p>
+
+<p>
+  <strong>Honor friendly:</strong>
+  <%= @summoner.honor_friendly %>
+</p>
+
+<p>
+  <strong>Honor helpful:</strong>
+  <%= @summoner.honor_helpful %>
+</p>
+
+<p>
+  <strong>Honor teamwork:</strong>
+  <%= @summoner.honor_teamwork %>
+</p>
+
+<p>
+  <strong>Honor opponent:</strong>
+  <%= @summoner.honor_opponent %>
+</p>
+
+<p>
+  <strong>Lifetime ip:</strong>
+  <%= @summoner.lifetime_ip %>
+</p>
+
+<p>
+  <strong>Last season:</strong>
+  <%= @summoner.last_season %>
+</p>
+
+<%= link_to 'Edit', edit_summoner_path(@summoner) %> |
+<%= link_to 'Back', summoners_path %>

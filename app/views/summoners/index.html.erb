@@ -1,0 +1,45 @@
+<h1>Listing summoners</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Level</th>
+      <th>Icon</th>
+      <th>Server</th>
+      <th>Honor friendly</th>
+      <th>Honor helpful</th>
+      <th>Honor teamwork</th>
+      <th>Honor opponent</th>
+      <th>Lifetime ip</th>
+      <th>Last season</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @summoners.each do |summoner| %>
+      <tr>
+        <td><%= summoner.name %></td>
+        <td><%= summoner.level %></td>
+        <td><%= summoner.icon %></td>
+        <td><%= summoner.server %></td>
+        <td><%= summoner.honor_friendly %></td>
+        <td><%= summoner.honor_helpful %></td>
+        <td><%= summoner.honor_teamwork %></td>
+        <td><%= summoner.honor_opponent %></td>
+        <td><%= summoner.lifetime_ip %></td>
+        <td><%= summoner.last_season %></td>
+        <td><%= link_to 'Show', summoner %></td>
+        <td><%= link_to 'Edit', edit_summoner_path(summoner) %></td>
+        <td><%= link_to 'Destroy', summoner, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Summoner', new_summoner_path %>
