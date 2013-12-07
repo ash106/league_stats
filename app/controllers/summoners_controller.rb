@@ -1,6 +1,7 @@
 class SummonersController < ApplicationController
   before_action :set_summoner, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!
+  before_action :set_unirest_header
 
   # GET /summoners
   # GET /summoners.json
@@ -15,7 +16,12 @@ class SummonersController < ApplicationController
 
   # GET /summoners/new
   def new
-    @summoner = Summoner.new
+    @summoner = current_user.summoners.new
+
+    respond_to do |format|
+      format.html # new.html.erb
+      format.js
+    end
   end
 
   # GET /summoners/1/edit
@@ -26,15 +32,53 @@ class SummonersController < ApplicationController
   # POST /summoners.json
   def create
     @user = current_user
-    @summoner = @user.summoners.create(summoner_params)
+    @summoner = Summoner.new(summoner_params)
+
+    server = params[:summoner][:server]
+    name = params[:summoner][:name]
+
+    search_string = "https://teemojson.p.mashape.com/player/#{server}/#{name}"
+    response = Unirest.get(search_string).body["data"]
+
+    if response.present?
+      @summoner.icon = response["icon"]
+      @summoner.level = response["level"]
+    end
+
+    search_string = "https://teemojson.p.mashape.com/player/#{server}/#{name}/honor"
+    response = Unirest.get(search_string).body["data"]
+
+    if response.present?
+      @summoner.honor_friendly = response["totals"][1]
+      @summoner.honor_helpful = response["totals"][2]
+      @summoner.honor_teamwork = response["totals"][3]
+      @summoner.honor_opponent = response["totals"][4]
+    end
+
+    search_string = "https://teemojson.p.mashape.com/player/#{server}/#{name}/influence_points"
+    response = Unirest.get(search_string).body["data"]
+
+    if response.present?
+      @summoner.lifetime_ip = response
+    end
+
+    search_string = "https://teemojson.p.mashape.com/player/#{server}/#{name}/past_seasons"
+    response = Unirest.get(search_string).body["data"]
+
+    if response.present?
+      @summoner.last_season = response["seasonTwo"]
+    end
 
     respond_to do |format|
       if @summoner.save
-        format.html { redirect_to @summoner, notice: 'Summoner was successfully created.' }
+        @user.summoners << @summoner
+        format.html { redirect_to summoner_path(@summoner.server, @summoner.name), notice: 'Summoner was successfully created.' }
         format.json { render action: 'show', status: :created, location: @summoner }
+        format.js
       else
         format.html { render action: 'new' }
         format.json { render json: @summoner.errors, status: :unprocessable_entity }
+        format.js
       end
     end
   end
@@ -72,5 +116,9 @@ class SummonersController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def summoner_params
       params.require(:summoner).permit(:name, :level, :icon, :server, :honor_friendly, :honor_helpful, :honor_teamwork, :honor_opponent, :lifetime_ip, :last_season)
+    end
+
+    def set_unirest_header
+      Unirest.default_header("X-Mashape-Authorization",ENV['MASHAPE_KEY'])
     end
 end

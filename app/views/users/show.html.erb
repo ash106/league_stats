@@ -1,10 +1,14 @@
 <div class="row">
-  <div class="small-8 large-centered columns">
-    <h1>Summoners</h1>
-    <%= render 'summoners/form' %>
-    <p>Wheatbox</p>
-    <p>Cheezebox</p>
-    <p>Bronziebox</p>
-  </div> 
+    <h1 class="small-8 large-centered columns">Summoners</h1>
 </div>
+<%= render 'summoners/form' %>
+<div class="row">
+  <div id="summoners" class="small-8 large-centered columns">
+    <div id="loading">
+      <!-- <i class="fi-widget large"></i> -->
+    </div>
+    <%= render @summoners %>
+  </div>
+</div>
+
 

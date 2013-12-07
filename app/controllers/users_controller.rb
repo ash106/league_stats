@@ -10,6 +10,7 @@ class UsersController < ApplicationController
     # @user = User.find(params[:id])
     @user = current_user
     @summoner = Summoner.new
+    @summoners = current_user.summoners
   end
   
   def update
