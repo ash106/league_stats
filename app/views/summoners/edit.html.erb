@@ -2,5 +2,5 @@
 
 <%= render 'form' %>
 
-<%= link_to 'Show', @summoner %> |
+<%= link_to 'Show', summoner_path(@summoner.server, @summoner.name) %> |
 <%= link_to 'Back', summoners_path %>

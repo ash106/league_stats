@@ -32,9 +32,9 @@
         <td><%= summoner.honor_opponent %></td>
         <td><%= summoner.lifetime_ip %></td>
         <td><%= summoner.last_season %></td>
-        <td><%= link_to 'Show', summoner %></td>
-        <td><%= link_to 'Edit', edit_summoner_path(summoner) %></td>
-        <td><%= link_to 'Destroy', summoner, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Show', summoner_path(summoner.server, summoner.name) %></td>
+        <td><%= link_to 'Edit', edit_summoner_path(summoner.server, summoner.name) %></td>
+        <td><%= link_to 'Destroy', summoner_path(summoner.server, summoner.name), method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>

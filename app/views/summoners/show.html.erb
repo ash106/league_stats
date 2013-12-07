@@ -50,5 +50,5 @@
   <%= @summoner.last_season %>
 </p>
 
-<%= link_to 'Edit', edit_summoner_path(@summoner) %> |
+<%= link_to 'Edit', edit_summoner_path(@summoner.server, @summoner.name) %> |
 <%= link_to 'Back', summoners_path %>
