@@ -58,7 +58,7 @@
   <tbody>
     <% @games.each do |game| %>
       <tr>
-        <td><%= game.summoner %></td>
+        <td><%= game.summoner.name %></td>
         <td><%= game.game_num %></td>
         <td><%= game.ip_earned %></td>
         <td><%= game.ping %></td>
