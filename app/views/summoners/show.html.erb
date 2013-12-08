@@ -50,7 +50,20 @@
   <%= @summoner.last_season %>
 </p>
 
-<a id="update_history" href="#" class="button radius">Update Match History</a>
-
 <%= link_to 'Edit', edit_summoner_path(@summoner.server, @summoner.name) %> |
 <%= link_to 'Back', summoners_path %>
+
+<br />
+<br />
+
+<%= minimal_form_for @game, remote: true, url: games_path(server: @summoner.server, name: @summoner.name) do |f| %>
+  <%= f.error_notification %>
+
+  <%= f.input :summoner_id, input_html: { value: @summoner.id }, as: :hidden %>
+
+  <div class="form-actions">
+    <%= f.button :button, 'Update Match History' %>
+  </div>
+<% end %>
+
+<h3>Match History</h3>

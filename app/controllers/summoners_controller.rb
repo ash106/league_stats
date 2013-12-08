@@ -12,6 +12,7 @@ class SummonersController < ApplicationController
   # GET /summoners/1
   # GET /summoners/1.json
   def show
+    @game = @summoner.games.new
   end
 
   # GET /summoners/new
