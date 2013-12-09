@@ -11,6 +11,7 @@ class UsersController < ApplicationController
     @user = current_user
     @summoner = Summoner.new
     @summoners = current_user.summoners
+    # @summoners = []
   end
   
   def update
