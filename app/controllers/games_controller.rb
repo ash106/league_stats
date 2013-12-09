@@ -88,6 +88,7 @@ class GamesController < ApplicationController
               when "NEUTRAL_MINIONS_KILLED" then @game.neutral_minions_killed = stat["value"]
               when "LEVEL" then @game.level = stat["value"]
               when "ITEM0" then @game.item_zero = stat["value"]
+              when "ITEM3" then @game.item_three = stat["value"]
               when "TOTAL_DAMAGE_DEALT" then @game.total_damage_dealt = stat["value"]
               when "SIGHT_WARDS_BOUGHT_IN_GAME" then @game.sight_wards_bought_in_game = stat["value"]
               when "TOTAL_TIME_CROWD_CONTROL_DEALT" then @game.total_time_crowd_control_dealt = stat["value"]

@@ -48,6 +48,7 @@
       <th>Total damage dealt</th>
       <th>Sight wards bought in game</th>
       <th>Total time crowd control dealt</th>
+      <th>Item three</th>
       <th>Win</th>
       <th></th>
       <th></th>
@@ -103,6 +104,7 @@
         <td><%= game.total_damage_dealt %></td>
         <td><%= game.sight_wards_bought_in_game %></td>
         <td><%= game.total_time_crowd_control_dealt %></td>
+        <td><%= get_item_name game.item_three %></td>
         <td><%= game.win %></td>
         <td><%= link_to 'Show', game %></td>
         <td><%= link_to 'Edit', edit_game_path(game) %></td>
