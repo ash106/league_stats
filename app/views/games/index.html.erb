@@ -3,53 +3,53 @@
 <table>
   <thead>
     <tr>
-      <th>Summoner</th>
       <th>Game num</th>
+      <th>Summoner</th>
+      <th>Queue type</th>
+      <th>Win</th>
+      <th>Champion</th>
+      <th>Kills</th>
+      <th>Deaths</th>
+      <th>Assists</th>
+      <th>Item zero</th>
+      <th>Item one</th>
+      <th>Item two</th>
+      <th>Item three</th>
+      <th>Item four</th>
+      <th>Item five</th>
+      <th>Item six</th>
+      <th>Spell one</th>
+      <th>Spell two</th>
+      <th>Create date</th>
+      <th>Team</th>
       <th>Ip earned</th>
       <th>Ping</th>
       <th>Time in queue</th>
-      <th>Champion</th>
-      <th>Queue type</th>
-      <th>Create date</th>
-      <th>Spell one</th>
-      <th>Spell two</th>
-      <th>Team</th>
-      <th>Neutral minions killed enemy jungle</th>
-      <th>True damage dealt to champions</th>
-      <th>Total heal</th>
-      <th>Ward placed</th>
-      <th>Assists</th>
-      <th>Total damage dealt to champions</th>
-      <th>True damage taken</th>
-      <th>Num deaths</th>
-      <th>Largest killing spree</th>
-      <th>Magic damage dealt player</th>
-      <th>True damage dealt player</th>
-      <th>Item four</th>
-      <th>Physical damage dealt player</th>
-      <th>Largest multi kill</th>
-      <th>Item two</th>
-      <th>Neutral minions killed your jungle</th>
-      <th>Physical damage taken</th>
-      <th>Total damage taken</th>
-      <th>Minions killed</th>
-      <th>Champions killed</th>
-      <th>Item one</th>
-      <th>Magic damage taken</th>
-      <th>Physical damage dealt to champions</th>
-      <th>Item five</th>
       <th>Gold earned</th>
-      <th>Magic damage dealt to champions</th>
-      <th>Item six</th>
-      <th>Total time spent dead</th>
-      <th>Neutral minions killed</th>
       <th>Level</th>
-      <th>Item zero</th>
+      <th>Minions killed</th>
+      <th>Neutral minions killed</th>
+      <th>Neutral minions killed your jungle</th>
+      <th>Neutral minions killed enemy jungle</th>
+      <th>Largest multi kill</th>
+      <th>Largest killing spree</th>
       <th>Total damage dealt</th>
-      <th>Sight wards bought in game</th>
+      <th>True damage dealt player</th>
+      <th>Magic damage dealt player</th>
+      <th>Physical damage dealt player</th>
+      <th>Total damage dealt to champions</th>
+      <th>True damage dealt to champions</th>
+      <th>Magic damage dealt to champions</th>
+      <th>Physical damage dealt to champions</th>
+      <th>Total damage taken</th>
+      <th>True damage taken</th>
+      <th>Magic damage taken</th>
+      <th>Physical damage taken</th>
+      <th>Total heal</th>
       <th>Total time crowd control dealt</th>
-      <th>Item three</th>
-      <th>Win</th>
+      <th>Total time spent dead</th>
+      <th>Ward placed</th>
+      <th>Sight wards bought in game</th>
       <th></th>
       <th></th>
       <th></th>
@@ -59,53 +59,53 @@
   <tbody>
     <% @games.each do |game| %>
       <tr>
-        <td><%= game.summoner.name %></td>
         <td><%= game.game_num %></td>
+        <td><%= game.summoner.name %></td>
+        <td><%= game.queue_type %></td>
+        <td><%= game.win %></td>
+        <td><%= get_champion_name game.champion_id %></td>
+        <td><%= game.champions_killed %></td>
+        <td><%= game.num_deaths %></td>
+        <td><%= game.assists %></td>
+        <td><%= get_item_name game.item_zero %></td>
+        <td><%= get_item_name game.item_one %></td>
+        <td><%= get_item_name game.item_two %></td>
+        <td><%= get_item_name game.item_three %></td>
+        <td><%= get_item_name game.item_four %></td>
+        <td><%= get_item_name game.item_five %></td>
+        <td><%= get_item_name game.item_six %></td>
+        <td><%= get_summoner_spell_name game.spell_one %></td>
+        <td><%= get_summoner_spell_name game.spell_two %></td>
+        <td><%= game.create_date %></td>
+        <td><%= game.team_id %></td>
         <td><%= game.ip_earned %></td>
         <td><%= game.ping %></td>
         <td><%= game.time_in_queue %></td>
-        <td><%= get_champion_name game.champion_id %></td>
-        <td><%= game.queue_type %></td>
-        <td><%= game.create_date %></td>
-        <td><%= get_summoner_spell_name game.spell_one %></td>
-        <td><%= get_summoner_spell_name game.spell_two %></td>
-        <td><%= game.team_id %></td>
-        <td><%= game.neutral_minions_killed_enemy_jungle %></td>
-        <td><%= game.true_damage_dealt_to_champions %></td>
-        <td><%= game.total_heal %></td>
-        <td><%= game.ward_placed %></td>
-        <td><%= game.assists %></td>
-        <td><%= game.total_damage_dealt_to_champions %></td>
-        <td><%= game.true_damage_taken %></td>
-        <td><%= game.num_deaths %></td>
-        <td><%= game.largest_killing_spree %></td>
-        <td><%= game.magic_damage_dealt_player %></td>
-        <td><%= game.true_damage_dealt_player %></td>
-        <td><%= get_item_name game.item_four %></td>
-        <td><%= game.physical_damage_dealt_player %></td>
-        <td><%= game.largest_multi_kill %></td>
-        <td><%= get_item_name game.item_two %></td>
-        <td><%= game.neutral_minions_killed_your_jungle %></td>
-        <td><%= game.physical_damage_taken %></td>
-        <td><%= game.total_damage_taken %></td>
-        <td><%= game.minions_killed %></td>
-        <td><%= game.champions_killed %></td>
-        <td><%= get_item_name game.item_one %></td>
-        <td><%= game.magic_damage_taken %></td>
-        <td><%= game.physical_damage_dealt_to_champions %></td>
-        <td><%= get_item_name game.item_five %></td>
         <td><%= game.gold_earned %></td>
-        <td><%= game.magic_damage_dealt_to_champions %></td>
-        <td><%= get_item_name game.item_six %></td>
-        <td><%= game.total_time_spent_dead %></td>
-        <td><%= game.neutral_minions_killed %></td>
         <td><%= game.level %></td>
-        <td><%= get_item_name game.item_zero %></td>
+        <td><%= game.minions_killed %></td>
+        <td><%= game.neutral_minions_killed %></td>
+        <td><%= game.neutral_minions_killed_your_jungle %></td>
+        <td><%= game.neutral_minions_killed_enemy_jungle %></td>
+        <td><%= game.largest_multi_kill %></td>
+        <td><%= game.largest_killing_spree %></td>
         <td><%= game.total_damage_dealt %></td>
-        <td><%= game.sight_wards_bought_in_game %></td>
+        <td><%= game.true_damage_dealt_player %></td>
+        <td><%= game.magic_damage_dealt_player %></td>
+        <td><%= game.physical_damage_dealt_player %></td>
+        <td><%= game.total_damage_dealt_to_champions %></td>
+        <td><%= game.true_damage_dealt_to_champions %></td>
+        <td><%= game.magic_damage_dealt_to_champions %></td>
+        <td><%= game.physical_damage_dealt_to_champions %></td>
+        <td><%= game.total_damage_taken %></td>
+        <td><%= game.true_damage_taken %></td>
+        <td><%= game.magic_damage_taken %></td>
+        <td><%= game.physical_damage_taken %></td>
+        <td><%= game.total_heal %></td>
         <td><%= game.total_time_crowd_control_dealt %></td>
-        <td><%= get_item_name game.item_three %></td>
-        <td><%= game.win %></td>
+        <td><%= game.total_time_spent_dead %></td>
+        <td><%= game.ward_placed %></td>        
+        <td><%= game.sight_wards_bought_in_game %></td>
         <td><%= link_to 'Show', game %></td>
         <td><%= link_to 'Edit', edit_game_path(game) %></td>
         <td><%= link_to 'Destroy', game, method: :delete, data: { confirm: 'Are you sure?' } %></td>
