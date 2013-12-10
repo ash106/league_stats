@@ -13,6 +13,7 @@ class SummonersController < ApplicationController
   # GET /summoners/1.json
   def show
     @game = @summoner.games.new
+    @games = @summoner.games.order(game_num: :desc)
   end
 
   # GET /summoners/new
@@ -33,10 +34,12 @@ class SummonersController < ApplicationController
   # POST /summoners.json
   def create
     @user = current_user
-    @summoner = Summoner.new(summoner_params)
+    # @summoner = Summoner.new(summoner_params)
 
-    server = params[:summoner][:server]
-    name = params[:summoner][:name]
+    server = params[:summoner][:server].downcase
+    name = params[:summoner][:name].downcase
+
+    @summoner = Summoner.where(server: server, name: name).first_or_initialize
 
     search_string = "https://teemojson.p.mashape.com/player/#{server}/#{name}"
     response = Unirest.get(search_string).body["data"]

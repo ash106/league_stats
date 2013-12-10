@@ -10,7 +10,7 @@ class UsersController < ApplicationController
     # @user = User.find(params[:id])
     @user = current_user
     @summoner = Summoner.new
-    @summoners = current_user.summoners
+    @summoners = current_user.summoners.order(updated_at: :desc)
     # @summoners = []
   end
   

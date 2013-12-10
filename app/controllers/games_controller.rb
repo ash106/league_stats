@@ -40,9 +40,9 @@ class GamesController < ApplicationController
 
     if response.present?
       for num in sorted_game_nums
-        @game = Game.new(game_params)
         for game in game_stats
           if num.to_i == game["gameId"] && (game["queueType"] == "RANKED_SOLO_5x5" || game["queueType"] == "NORMAL")
+            @game = Game.where(game_num: game["gameId"], summoner_id: params[:game][:summoner_id]).first_or_initialize
             @game.game_num = game["gameId"]
             @game.ip_earned = game["ipEarned"]
             @game.ping = game["userServerPing"]
