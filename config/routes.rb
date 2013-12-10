@@ -12,6 +12,10 @@ LeagueStats::Application.routes.draw do
   delete "/:server/:name", to: "summoners#destroy"
   resources :summoners, except: [:show, :edit, :update, :destroy]
 
-  
-  resources :games
+  get "/:server/:name/:game_num", to: "games#show", as: :game
+  # get "/:server/:name/:game_num/edit", to: "games#edit", as: :edit_game
+  # patch "/:server/:name/:game_num", to: "games#update"
+  # put "/:server/:name/:game_num", to: "games#update"
+  delete "/:server/:name/:game_num", to: "games#destroy"
+  resources :games, except: [:show, :edit, :update, :destroy]
 end

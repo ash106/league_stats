@@ -1,71 +1,73 @@
 <p id="notice"><%= notice %></p>
-<% if @summoner %>
-<p>
-  <strong>Name:</strong>
-  <%= @summoner.name %>
-</p>
-
-<p>
-  <strong>Level:</strong>
-  <%= @summoner.level %>
-</p>
-
-<p>
-  <strong>Icon:</strong>
-  <%= @summoner.icon %>
-</p>
-
-<p>
-  <strong>Server:</strong>
-  <%= @summoner.server %>
-</p>
-
-<p>
-  <strong>Honor friendly:</strong>
-  <%= @summoner.honor_friendly %>
-</p>
-
-<p>
-  <strong>Honor helpful:</strong>
-  <%= @summoner.honor_helpful %>
-</p>
-
-<p>
-  <strong>Honor teamwork:</strong>
-  <%= @summoner.honor_teamwork %>
-</p>
-
-<p>
-  <strong>Honor opponent:</strong>
-  <%= @summoner.honor_opponent %>
-</p>
-
-<p>
-  <strong>Lifetime ip:</strong>
-  <%= @summoner.lifetime_ip %>
-</p>
-
-<p>
-  <strong>Last season:</strong>
-  <%= @summoner.last_season %>
-</p>
-
-<%= link_to 'Edit', edit_summoner_path(@summoner.server, @summoner.name) %> |
 <%= link_to 'Back', dashboard_path %>
-
 <br />
 <br />
+<% if @summoner %>
+  <p>
+    <strong>Name:</strong>
+    <%= @summoner.name %>
+  </p>
+
+  <p>
+    <strong>Level:</strong>
+    <%= @summoner.level %>
+  </p>
+
+  <p>
+    <strong>Icon:</strong>
+    <%= @summoner.icon %>
+  </p>
+
+  <p>
+    <strong>Server:</strong>
+    <%= @summoner.server %>
+  </p>
+
+  <p>
+    <strong>Honor friendly:</strong>
+    <%= @summoner.honor_friendly %>
+  </p>
+
+  <p>
+    <strong>Honor helpful:</strong>
+    <%= @summoner.honor_helpful %>
+  </p>
+
+  <p>
+    <strong>Honor teamwork:</strong>
+    <%= @summoner.honor_teamwork %>
+  </p>
+
+  <p>
+    <strong>Honor opponent:</strong>
+    <%= @summoner.honor_opponent %>
+  </p>
+
+  <p>
+    <strong>Lifetime ip:</strong>
+    <%= @summoner.lifetime_ip %>
+  </p>
+
+  <p>
+    <strong>Last season:</strong>
+    <%= @summoner.last_season %>
+  </p>
+
+  <%#= link_to 'Edit', edit_summoner_path(@summoner.server, @summoner.name) %>
+
+  <br />
+  <br />
 
 
-<%= minimal_form_for @game, remote: true, url: games_path(server: @summoner.server, name: @summoner.name) do |f| %>
-  <%= f.error_notification %>
+  <%= minimal_form_for @game, remote: true, url: games_path(server: @summoner.server, name: @summoner.name) do |f| %>
+    <%= f.error_notification %>
 
-  <%= f.input :summoner_id, input_html: { value: @summoner.id }, as: :hidden %>
+    <%= f.input :summoner_id, input_html: { value: @summoner.id }, as: :hidden %>
 
-  <div class="form-actions">
-    <%= f.button :button, 'Update Match History' %>
-  </div>
-<% end %>
+    <div class="form-actions">
+      <%= f.button :button, 'Update Match History' %>
+    </div>
+  <% end %>
 <% end %>
 
 <h3>Match History</h3>

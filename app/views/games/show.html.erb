@@ -1,8 +1,13 @@
 <p id="notice"><%= notice %></p>
 
+<%= link_to 'Back', summoner_path(@summoner.server, @summoner.name) %>
+
+<br />
+<br />
+
 <p>
   <strong>Summoner:</strong>
-  <%= @game.summoner %>
+  <%= @game.summoner.name.titleize %>
 </p>
 
 <p>
@@ -230,5 +235,4 @@
   <%= @game.win %>
 </p>
 
-<%= link_to 'Edit', edit_game_path(@game) %> |
-<%= link_to 'Back', games_path %>
+<%#= link_to 'Edit', edit_game_path(@game) %>

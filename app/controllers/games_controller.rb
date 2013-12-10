@@ -1,5 +1,5 @@
 class GamesController < ApplicationController
-  before_action :set_game, only: [:show, :edit, :update, :destroy]
+  before_action :set_game, only: [:show, :destroy]
   before_action :set_summoner, only: :create
   before_action :set_unirest_header
 
@@ -20,8 +20,8 @@ class GamesController < ApplicationController
   end
 
   # GET /games/1/edit
-  def edit
-  end
+  # def edit
+  # end
 
   # POST /games
   # POST /games.json
@@ -121,17 +121,17 @@ class GamesController < ApplicationController
 
   # PATCH/PUT /games/1
   # PATCH/PUT /games/1.json
-  def update
-    respond_to do |format|
-      if @game.update(game_params)
-        format.html { redirect_to @game, notice: 'Game was successfully updated.' }
-        format.json { head :no_content }
-      else
-        format.html { render action: 'edit' }
-        format.json { render json: @game.errors, status: :unprocessable_entity }
-      end
-    end
-  end
+  # def update
+  #   respond_to do |format|
+  #     if @game.update(game_params)
+  #       format.html { redirect_to @game, notice: 'Game was successfully updated.' }
+  #       format.json { head :no_content }
+  #     else
+  #       format.html { render action: 'edit' }
+  #       format.json { render json: @game.errors, status: :unprocessable_entity }
+  #     end
+  #   end
+  # end
 
   # DELETE /games/1
   # DELETE /games/1.json
@@ -146,7 +146,8 @@ class GamesController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_game
-      @game = Game.find(params[:id])
+      @summoner = Summoner.where(:name=>params[:name]).where(:server=>params[:server]).first
+      @game = @summoner.games.where(:game_num=>params[:game_num]).first
     end
 
     def set_summoner
