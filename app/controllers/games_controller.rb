@@ -107,7 +107,7 @@ class GamesController < ApplicationController
       end
     end
 
-    @games = Game.where(summoner_id: params[:game][:summoner_id])
+    @games = Game.where(summoner_id: params[:game][:summoner_id]).order(game_num: :desc)
 
     respond_to do |format|
       # if @game.save
