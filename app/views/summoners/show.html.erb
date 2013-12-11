@@ -71,9 +71,11 @@
 <% end %>
 
 <h3>Match History</h3>
-
-<% if @games.empty? %>
-  <p class="no_games">It's empty!</p>
-<% else %>
-  <%= render @games %>
-<% end %>
+<div id="loading"></div>
+<div id="match_history">
+  <% if @games.empty? %>
+    <p class="no_games">It's empty!</p>
+  <% else %>
+    <%= render @games %>
+  <% end %>
+</div>

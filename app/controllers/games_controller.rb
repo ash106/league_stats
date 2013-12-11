@@ -106,6 +106,8 @@ class GamesController < ApplicationController
       end
     end
 
+    @games = Game.where(summoner_id: params[:game][:summoner_id])
+
     respond_to do |format|
       # if @game.save
         format.html { redirect_to @game, notice: 'Game was successfully created.' }

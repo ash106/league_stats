@@ -1,3 +1,4 @@
-$("#update_history").click (event) ->
-    event.preventDefault()
-    alert "You clicked da booton!"
+$ ->
+  $("#new_game").submit (event) ->
+    $('#loading').show()
+    $('#match_history').hide()
