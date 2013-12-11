@@ -27,8 +27,8 @@ class SummonersController < ApplicationController
   end
 
   # GET /summoners/1/edit
-  def edit
-  end
+  # def edit
+  # end
 
   # POST /summoners
   # POST /summoners.json
@@ -103,17 +103,17 @@ class SummonersController < ApplicationController
 
   # PATCH/PUT /summoners/1
   # PATCH/PUT /summoners/1.json
-  def update
-    respond_to do |format|
-      if @summoner.update(summoner_params)
-        format.html { redirect_to @summoner, notice: 'Summoner was successfully updated.' }
-        format.json { head :no_content }
-      else
-        format.html { render action: 'edit' }
-        format.json { render json: @summoner.errors, status: :unprocessable_entity }
-      end
-    end
-  end
+  # def update
+  #   respond_to do |format|
+  #     if @summoner.update(summoner_params)
+  #       format.html { redirect_to @summoner, notice: 'Summoner was successfully updated.' }
+  #       format.json { head :no_content }
+  #     else
+  #       format.html { render action: 'edit' }
+  #       format.json { render json: @summoner.errors, status: :unprocessable_entity }
+  #     end
+  #   end
+  # end
 
   # DELETE /summoners/1
   # DELETE /summoners/1.json
