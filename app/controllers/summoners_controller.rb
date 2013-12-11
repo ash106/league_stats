@@ -35,55 +35,69 @@ class SummonersController < ApplicationController
   def create
     @user = current_user
     # @summoner = Summoner.new(summoner_params)
+    @summoners = current_user.summoners.order(updated_at: :desc)
 
     server = params[:summoner][:server].downcase
     name = params[:summoner][:name].downcase
 
     @summoner = Summoner.where(server: server, name: name).first_or_initialize
 
-    search_string = "https://teemojson.p.mashape.com/player/#{server}/#{name}"
-    response = Unirest.get(search_string).body["data"]
+    if Ownership.where(summoner_id: @summoner.id, user_id: current_user.id).empty?
+      search_string = "https://teemojson.p.mashape.com/player/#{server}/#{name}"
+      response = Unirest.get(search_string).body["data"]
 
-    if response.present?
-      @summoner.icon = response["icon"]
-      @summoner.level = response["level"]
+      if response.present?
+        @summoner.icon = response["icon"]
+        @summoner.level = response["level"]
+      end
+
+      search_string = "https://teemojson.p.mashape.com/player/#{server}/#{name}/honor"
+      response = Unirest.get(search_string).body["data"]
+
+      if response.present?
+        @summoner.honor_friendly = response["totals"][1]
+        @summoner.honor_helpful = response["totals"][2]
+        @summoner.honor_teamwork = response["totals"][3]
+        @summoner.honor_opponent = response["totals"][4]
+      end
+
+      search_string = "https://teemojson.p.mashape.com/player/#{server}/#{name}/influence_points"
+      response = Unirest.get(search_string).body["data"]
+
+      if response.present?
+        @summoner.lifetime_ip = response
+      end
+
+      search_string = "https://teemojson.p.mashape.com/player/#{server}/#{name}/past_seasons"
+      response = Unirest.get(search_string).body["data"]
+
+      if response.present?
+        @summoner.last_season = response["seasonTwo"]
+      end
+
+      respond_to do |format|
+        if @summoner.save
+          @user.summoners << @summoner
+          format.html { redirect_to summoner_path(@summoner.server, @summoner.name), notice: 'Summoner was successfully created.' }
+          format.json { render action: 'show', status: :created, location: @summoner }
+          format.js
+          return
+        else
+          format.html { render action: 'new' }
+          format.json { render json: @summoner.errors, status: :unprocessable_entity }
+          format.js
+          return
+        end
+      end
     end
 
-    search_string = "https://teemojson.p.mashape.com/player/#{server}/#{name}/honor"
-    response = Unirest.get(search_string).body["data"]
-
-    if response.present?
-      @summoner.honor_friendly = response["totals"][1]
-      @summoner.honor_helpful = response["totals"][2]
-      @summoner.honor_teamwork = response["totals"][3]
-      @summoner.honor_opponent = response["totals"][4]
-    end
-
-    search_string = "https://teemojson.p.mashape.com/player/#{server}/#{name}/influence_points"
-    response = Unirest.get(search_string).body["data"]
-
-    if response.present?
-      @summoner.lifetime_ip = response
-    end
-
-    search_string = "https://teemojson.p.mashape.com/player/#{server}/#{name}/past_seasons"
-    response = Unirest.get(search_string).body["data"]
-
-    if response.present?
-      @summoner.last_season = response["seasonTwo"]
-    end
+    @summoner = Summoner.new
 
     respond_to do |format|
-      if @summoner.save
-        @user.summoners << @summoner
-        format.html { redirect_to summoner_path(@summoner.server, @summoner.name), notice: 'Summoner was successfully created.' }
-        format.json { render action: 'show', status: :created, location: @summoner }
-        format.js
-      else
-        format.html { render action: 'new' }
-        format.json { render json: @summoner.errors, status: :unprocessable_entity }
-        format.js
-      end
+      format.html { redirect_to summoner_path(@summoner.server, @summoner.name), notice: 'Summoner was successfully created.' }
+      format.json { render action: 'show', status: :created, location: @summoner }
+      format.js
+      return
     end
   end
 

@@ -52,6 +52,7 @@ class GamesController < ApplicationController
             @game.spell_one = game["spell1"]
             @game.spell_two = game["spell2"]
             @game.team_id = game["teamId"]
+            @game.create_date = DateTime.parse(game["createDate"])
 
             stats = game["statistics"]["array"]
 
