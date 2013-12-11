@@ -1,0 +1,12 @@
+.row
+  h1.small-8.large-centered.columns
+    | Summoners
+= render 'summoners/form'
+.row
+  #summoners.small-8.large-centered.columns
+    #loading
+    - if @summoners.empty?
+      p.no_summoners
+        | It's empty!
+    - else
+      = render @summoners
