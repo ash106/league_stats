@@ -3,12 +3,10 @@
 </div>
 <%= render 'summoners/form' %>
 <div class="row">
+  <div id="loading" class="small-8 large-centered columns"></div>
   <div id="summoners" class="small-8 large-centered columns">
-    <div id="loading">
-      <!-- <i class="fi-widget large"></i> -->
-    </div>
     <% if @summoners.empty? %>
-      <p class="no_summoners">It's empty!</p>
+      <p class="no_summoners">You have no summoners!</p>
     <% else %>
       <%= render @summoners %>
     <% end %>

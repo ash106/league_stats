@@ -96,6 +96,9 @@ class GamesController < ApplicationController
               when "WARD_PLACED" then @game.ward_placed = stat["value"]
               when "SIGHT_WARDS_BOUGHT_IN_GAME" then @game.sight_wards_bought_in_game = stat["value"]
               end
+              @game.champions_killed ||= 0
+              @game.num_deaths ||= 0
+              @game.assists ||= 0
             end
             if @game.save
               saved_games.push(num)

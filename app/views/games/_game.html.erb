@@ -1,3 +1,10 @@
-<div class="game_wrapper">
-  <p><%= link_to game.game_num, game_path(game.summoner.server, game.summoner.name, game.game_num) %> <%= get_champion_name game.champion_id %></p>
+<div class="game_wrapper panel radius">
+  <span class="champion_pic"><%= link_to image_tag("/assets/champions/#{get_champion_name game.champion_id}_Square_0.png", height: '64', width: '64'), game_path(game.summoner.server, game.summoner.name, game.game_num)%></span>
+  <% if game.win? %>
+    <span class="result win text-center">WIN</span>
+  <% else %>
+    <span class="result loss text-center">LOSS</span>
+  <% end %>
+  <span class="queue_type"><%= game.queue_type.titleize %></span>
+  <span class="kda">KDA: <%= game.champions_killed %>/<%= game.num_deaths %>/<%= game.assists %></span>
 </div>

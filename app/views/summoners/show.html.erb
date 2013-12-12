@@ -3,61 +3,33 @@
 <br />
 <br />
 <% if @summoner %>
-  <p>
-    <strong>Name:</strong>
-    <%= @summoner.name %>
-  </p>
+  <h1><%= @summoner.name.titleize %></h1>
 
-  <p>
-    <strong>Level:</strong>
-    <%= @summoner.level %>
-  </p>
-
-  <p>
-    <strong>Icon:</strong>
-    <%= @summoner.icon %>
-  </p>
-
-  <p>
-    <strong>Server:</strong>
-    <%= @summoner.server %>
-  </p>
-
-  <p>
-    <strong>Honor friendly:</strong>
-    <%= @summoner.honor_friendly %>
-  </p>
-
-  <p>
-    <strong>Honor helpful:</strong>
-    <%= @summoner.honor_helpful %>
-  </p>
-
-  <p>
-    <strong>Honor teamwork:</strong>
-    <%= @summoner.honor_teamwork %>
-  </p>
-
-  <p>
-    <strong>Honor opponent:</strong>
-    <%= @summoner.honor_opponent %>
-  </p>
-
-  <p>
-    <strong>Lifetime ip:</strong>
-    <%= @summoner.lifetime_ip %>
-  </p>
-
-  <p>
-    <strong>Last season:</strong>
-    <%= @summoner.last_season %>
-  </p>
-
-  <%#= link_to 'Edit', edit_summoner_path(@summoner.server, @summoner.name) %>
+  <p>Server -  <%= @summoner.server.upcase %></p>
+  <p>Level -  <%= @summoner.level %></p>
+  <p>Last season's rank - <%= @summoner.last_season.titleize %></p>
+  <p>Lifetime IP - <%= @summoner.lifetime_ip %></p>
+  <p>Honor:</p>
+  <table class="text-center">
+    <thead>
+      <tr>
+        <th>Friendly</th>
+        <th>Helpful</th>
+        <th>Teamwork</th>
+        <th>Honorable Opponent</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><%= @summoner.honor_friendly %></td>
+        <td><%= @summoner.honor_helpful %></td>
+        <td><%= @summoner.honor_teamwork %></td>
+        <td><%= @summoner.honor_opponent %></td>
+      </tr>
+    </tbody>
+  </table>
 
   <br />
-  <br />
-
 
   <%= minimal_form_for @game, remote: true, url: games_path(server: @summoner.server, name: @summoner.name) do |f| %>
     <%= f.error_notification %>

@@ -5,234 +5,103 @@
 <br />
 <br />
 
+<%= image_tag("/assets/champions/#{get_champion_name @game.champion_id}_Square_0.png", height: '64', width: '64') %>
+<% if @game.win? %>
+  <span class="result win text-center">WIN</span>
+<% else %>
+  <span class="result loss text-center">LOSS</span>
+<% end %>
+<span class="queue_type"><%= @game.queue_type.titleize %></span>
+<span class="kda">KDA: <%= @game.champions_killed %>/<%= @game.num_deaths %>/<%= @game.assists %></span>
+<% if @game.team_id == 100 %>
+  <span class="team">Team One</span>
+<% elsif @game.team_id == 200 %>
+  <span class="team">Team Two</span>
+<% end %>
+
+<br />
+<br />
+
+<p><%= @game.create_date.strftime("Created at %r on %m/%d/%Y") %></p>
+
 <p>
-  <strong>Summoner:</strong>
-  <%= @game.summoner.name.titleize %>
+  <span class="ip">Ip earned: <%= @game.ip_earned %></span>
+  <span class="ping">Ping: <%= @game.ping %></span>
+  <span class="time_in_queue">Time in queue: <%= @game.time_in_queue %></span>
+</p>
+
+
+<h3>Items</h3>
+<p>
+  <span class="first_item"><%= get_item_name @game.item_zero %></span>
+  <span class="item"><%= get_item_name @game.item_one %></span>
+  <span class="item"><%= get_item_name @game.item_two %></span>
+  <span class="item"><%= get_item_name @game.item_three %></span>
+  <span class="item"><%= get_item_name @game.item_four %></span>
+  <span class="item"><%= get_item_name @game.item_five %></span>
+  <span class="item"><%= get_item_name @game.item_six %></span>
+</p>
+
+<h4>Summoner Spells</h4>
+<p>
+  <span><%= get_summoner_spell_name @game.spell_one %></span>
+  <span class="spell"><%= get_summoner_spell_name @game.spell_two %></span>
 </p>
 
 <p>
-  <strong>Game num:</strong>
-  <%= @game.game_num %>
+  <span class="level">Level: <%= @game.level %></span>
+  <span class="gold_earned">Gold earned: <%= @game.gold_earned %></span>
+  <span class="minions">Minions killed: <%= @game.minions_killed %></span>
 </p>
 
 <p>
-  <strong>Ip earned:</strong>
-  <%= @game.ip_earned %>
+  <span>Largest killing spree: <%= @game.largest_killing_spree %></span>
+  <span class="multikill">Largest multikill: <%= @game.largest_multi_kill %></span>
 </p>
 
 <p>
-  <strong>Ping:</strong>
-  <%= @game.ping %>
+  <span>Time spent dead: <%= @game.total_time_spent_dead %> secs</span>
+  <span class="cc">Crowd control dealt: <%= @game.total_time_crowd_control_dealt %> secs</span>
 </p>
 
 <p>
-  <strong>Time in queue:</strong>
-  <%= @game.time_in_queue %>
+  <span>Sight wards bought in game: <%= @game.sight_wards_bought_in_game %></span>
+  <span class="wards">Wards placed: <%= @game.ward_placed %></span>
 </p>
 
-<p>
-  <strong>Champion:</strong>
-  <%= @game.champion_id %>
-</p>
-
-<p>
-  <strong>Queue type:</strong>
-  <%= @game.queue_type %>
-</p>
-
-<p>
-  <strong>Create date:</strong>
-  <%= @game.create_date %>
-</p>
-
-<p>
-  <strong>Spell one:</strong>
-  <%= @game.spell_one %>
-</p>
-
-<p>
-  <strong>Spell two:</strong>
-  <%= @game.spell_two %>
-</p>
-
-<p>
-  <strong>Team:</strong>
-  <%= @game.team_id %>
-</p>
-
-<p>
-  <strong>Neutral minions killed enemy jungle:</strong>
-  <%= @game.neutral_minions_killed_enemy_jungle %>
-</p>
-
-<p>
-  <strong>True damage dealt to champions:</strong>
-  <%= @game.true_damage_dealt_to_champions %>
-</p>
-
-<p>
-  <strong>Total heal:</strong>
-  <%= @game.total_heal %>
-</p>
-
-<p>
-  <strong>Ward placed:</strong>
-  <%= @game.ward_placed %>
-</p>
-
-<p>
-  <strong>Assists:</strong>
-  <%= @game.assists %>
-</p>
-
-<p>
-  <strong>Total damage dealt to champions:</strong>
-  <%= @game.total_damage_dealt_to_champions %>
-</p>
-
-<p>
-  <strong>True damage taken:</strong>
-  <%= @game.true_damage_taken %>
-</p>
-
-<p>
-  <strong>Num deaths:</strong>
-  <%= @game.num_deaths %>
-</p>
-
-<p>
-  <strong>Largest killing spree:</strong>
-  <%= @game.largest_killing_spree %>
-</p>
-
-<p>
-  <strong>Magic damage dealt player:</strong>
-  <%= @game.magic_damage_dealt_player %>
-</p>
-
-<p>
-  <strong>True damage dealt player:</strong>
-  <%= @game.true_damage_dealt_player %>
-</p>
-
-<p>
-  <strong>Item four:</strong>
-  <%= @game.item_four %>
-</p>
-
-<p>
-  <strong>Physical damage dealt player:</strong>
-  <%= @game.physical_damage_dealt_player %>
-</p>
-
-<p>
-  <strong>Largest multi kill:</strong>
-  <%= @game.largest_multi_kill %>
-</p>
-
-<p>
-  <strong>Item two:</strong>
-  <%= @game.item_two %>
-</p>
-
-<p>
-  <strong>Neutral minions killed your jungle:</strong>
-  <%= @game.neutral_minions_killed_your_jungle %>
-</p>
-
-<p>
-  <strong>Physical damage taken:</strong>
-  <%= @game.physical_damage_taken %>
-</p>
-
-<p>
-  <strong>Total damage taken:</strong>
-  <%= @game.total_damage_taken %>
-</p>
-
-<p>
-  <strong>Minions killed:</strong>
-  <%= @game.minions_killed %>
-</p>
-
-<p>
-  <strong>Champions killed:</strong>
-  <%= @game.champions_killed %>
-</p>
-
-<p>
-  <strong>Item one:</strong>
-  <%= @game.item_one %>
-</p>
-
-<p>
-  <strong>Magic damage taken:</strong>
-  <%= @game.magic_damage_taken %>
-</p>
-
-<p>
-  <strong>Physical damage dealt to champions:</strong>
-  <%= @game.physical_damage_dealt_to_champions %>
-</p>
-
-<p>
-  <strong>Item five:</strong>
-  <%= @game.item_five %>
-</p>
-
-<p>
-  <strong>Gold earned:</strong>
-  <%= @game.gold_earned %>
-</p>
-
-<p>
-  <strong>Magic damage dealt to champions:</strong>
-  <%= @game.magic_damage_dealt_to_champions %>
-</p>
-
-<p>
-  <strong>Item six:</strong>
-  <%= @game.item_six %>
-</p>
-
-<p>
-  <strong>Total time spent dead:</strong>
-  <%= @game.total_time_spent_dead %>
-</p>
-
-<p>
-  <strong>Neutral minions killed:</strong>
-  <%= @game.neutral_minions_killed %>
-</p>
-
-<p>
-  <strong>Level:</strong>
-  <%= @game.level %>
-</p>
-
-<p>
-  <strong>Item zero:</strong>
-  <%= @game.item_zero %>
-</p>
-
-<p>
-  <strong>Total damage dealt:</strong>
-  <%= @game.total_damage_dealt %>
-</p>
-
-<p>
-  <strong>Sight wards bought in game:</strong>
-  <%= @game.sight_wards_bought_in_game %>
-</p>
-
-<p>
-  <strong>Total time crowd control dealt:</strong>
-  <%= @game.total_time_crowd_control_dealt %>
-</p>
-
-<p>
-  <strong>Win:</strong>
-  <%= @game.win %>
-</p>
-
-<%#= link_to 'Edit', edit_game_path(@game) %>
+<table class="text-center">
+  <thead>
+    <tr>
+      <th></th>
+      <th>Damage Done</th>
+      <th>to Champions</th>
+      <th>Damage Taken</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Total damage</td>
+      <td><%= @game.total_damage_dealt %></td>
+      <td><%= @game.total_damage_dealt_to_champions %></td>
+      <td><%= @game.total_damage_taken %></td>
+    </tr>
+    <tr>
+      <td>True damage</td>
+      <td><%= @game.true_damage_dealt_player %></td>
+      <td><%= @game.true_damage_dealt_to_champions %></td>
+      <td><%= @game.true_damage_taken %></td>
+    </tr>
+    <tr>
+      <td>Magic damage</td>
+      <td><%= @game.magic_damage_dealt_player %></td>
+      <td><%= @game.magic_damage_dealt_to_champions %></td>
+      <td><%= @game.magic_damage_taken %></td>
+    </tr>
+    <tr>
+      <td>Physical damage</td>
+      <td><%= @game.physical_damage_dealt_player %></td>
+      <td><%= @game.physical_damage_dealt_to_champions %></td>
+      <td><%= @game.physical_damage_taken %></td>
+    </tr>
+  </tbody>
+</table>
