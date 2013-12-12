@@ -35,7 +35,7 @@ module ApplicationHelper
     when 60 then "Elise"
     when 28 then "Evelynn"
     when 81 then "Ezreal"
-    when 9 then "FiddleSticks"
+    when 9 then "Fiddlesticks"
     when 114 then "Fiora"
     when 105 then "Fizz"
     when 3 then "Galio"
