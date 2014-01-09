@@ -5,7 +5,7 @@
 <br />
 <br />
 
-<%= image_tag("/assets/champions/#{get_champion_name @game.champion_id}_Square_0.png", height: '64', width: '64') %>
+<%= image_tag("http://league-stats.s3.amazonaws.com/champions/#{get_champion_name @game.champion_id}_Square_0.png", height: '64', width: '64') %>
 <% if @game.win? %>
   <span class="result win text-center">WIN</span>
 <% else %>
