@@ -18,6 +18,7 @@ gem 'rolify'
 gem 'simple_form'
 gem 'unicorn'
 gem 'unirest'
+gem 'rails_12factor', group: :production
 group :development do
   gem 'powder'
   gem 'pry-rails'
