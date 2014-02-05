@@ -1,4 +1,4 @@
 <div class="summoner panel radius">
-  <h3 class="small-3"><%= link_to summoner.name.titleize, summoner_path(summoner.server, summoner.name) %></h3>
+  <h3 class="small-3"><%= link_to summoner.name.titleize, summoner_path(summoner.server, summoner.riot_id) %></h3>
   <p>Server: <%= summoner.server.upcase %> | Level: <%= summoner.level %></p>
 </div>

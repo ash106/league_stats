@@ -152,12 +152,12 @@ class GamesController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_game
-      @summoner = Summoner.where(:name=>params[:name]).where(:server=>params[:server]).first
+      @summoner = Summoner.where(:riot_id=>params[:riot_id]).where(:server=>params[:server]).first
       @game = @summoner.games.where(:game_num=>params[:game_num]).first
     end
 
     def set_summoner
-      @summoner = Summoner.where(:name=>params[:name]).where(:server=>params[:server]).first
+      @summoner = Summoner.where(:riot_id=>params[:riot_id]).where(:server=>params[:server]).first
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

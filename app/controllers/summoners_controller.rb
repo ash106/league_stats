@@ -49,6 +49,7 @@ class SummonersController < ApplicationController
       if response.present?
         @summoner.icon = response["icon"]
         @summoner.level = response["level"]
+        @summoner.riot_id = response["summonerId"]
       end
 
       search_string = "https://teemojson.p.mashape.com/player/#{server}/#{name}/honor"
@@ -78,7 +79,7 @@ class SummonersController < ApplicationController
       respond_to do |format|
         if @summoner.save
           @user.summoners << @summoner
-          format.html { redirect_to summoner_path(@summoner.server, @summoner.name), notice: 'Summoner was successfully created.' }
+          format.html { redirect_to summoner_path(@summoner.server, @summoner.riot_id), notice: 'Summoner was successfully created.' }
           format.json { render action: 'show', status: :created, location: @summoner }
           format.js
           return
@@ -94,7 +95,7 @@ class SummonersController < ApplicationController
     @summoner = Summoner.new
 
     respond_to do |format|
-      format.html { redirect_to summoner_path(@summoner.server, @summoner.name), notice: 'Summoner was successfully created.' }
+      format.html { redirect_to summoner_path(@summoner.server, @summoner.riot_id), notice: 'Summoner was successfully created.' }
       format.json { render action: 'show', status: :created, location: @summoner }
       format.js
       return
@@ -128,12 +129,12 @@ class SummonersController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_summoner
-      @summoner = Summoner.where(:name=>params[:name]).where(:server=>params[:server]).first
+      @summoner = Summoner.where(:riot_id=>params[:riot_id]).where(:server=>params[:server]).first
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def summoner_params
-      params.require(:summoner).permit(:name, :level, :icon, :server, :honor_friendly, :honor_helpful, :honor_teamwork, :honor_opponent, :lifetime_ip, :last_season)
+      params.require(:summoner).permit(:name, :level, :icon, :server, :honor_friendly, :honor_helpful, :honor_teamwork, :honor_opponent, :lifetime_ip, :last_season, :riot_id)
     end
 
     def set_unirest_header
